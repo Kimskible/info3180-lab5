@@ -1,4 +1,6 @@
 from . import db
+from werkzeug.security import generate_password_hash
+
 
 
 class UserProfile(db.Model):
@@ -18,7 +20,7 @@ class UserProfile(db.Model):
         self.first_name = first_name
         self.last_name = last_name
         self.username = username
-        self.password = generate_password_hash(password, method='pbkdf2:sha25')
+        self.password = generate_password_hash(password, method='pbkdf2:sha256')
 
 
     def is_authenticated(self):
